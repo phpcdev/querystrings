@@ -68,7 +68,7 @@ QueryString.value = function(value){
 		value = true; 	// boolean true
 	} else if (value == 'false') {
 		value = false; 	// boolean false
-	} else if (isset(value) && !isNaN(value)) {
+	} else if (isset(value) && isNumbersOnly(value)) {
 		value = +value; // number
 	}
 	return value;
@@ -185,7 +185,11 @@ function space(ed){
 }
 
 function isset(object){
-	return (object != "undefined" && object != undefined && object != null && object != "" && typeof(object) != 'undefined') ? true : false ;
+	return (object != "undefined" && object != undefined && object != null && object != "" && typeof(object) != 'undefined');
+}
+
+function isNumbersOnly(object){
+    return !object.replace(/\d+/g, '').length;
 }
 
 module.exports = QueryString;
