@@ -164,8 +164,8 @@ QueryString.parse = function(body){
 	split.forEach(function(string){
 		var split = string.split('=');
 		if(split){
-    		var key = decodeURIComponent(escape(split[0]));
-    		var value = decodeURIComponent(escape(split[1]));
+    		var key = tryToDecode(split[0]);
+    		var value = tryToDecode(split[1]);
     		
     		//console.log(key,'=',value);
     		QueryString.traverse(result, key, value, split.length)
@@ -190,6 +190,14 @@ function isset(object){
 
 function isNumbersOnly(object){
     return !object.replace(/\d+/g, '').length;
+}
+
+function tryToDecode(str){
+    try {
+        return decodeURIComponent(str);
+    } catch (e) {
+        return str;
+    }
 }
 
 module.exports = QueryString;
