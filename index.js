@@ -86,8 +86,6 @@ QueryString.stringifyValue = function(value){
 		value = 'true'; 	// boolean true
 	} else if (value === false) {
 		value = 'false'; 	// boolean false
-	} else if (isset(value) && !isNaN(value)) {
-		value = +value; // number
 	}
 	return value;
 }
